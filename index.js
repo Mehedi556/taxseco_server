@@ -18,7 +18,11 @@ async function run(){
         const serviceCollection = client.db('taxseco').collection('services');
         const reviewCollection = client.db('taxseco').collection('reviews');
 
-       
+        app.post('/service' , async(req , res) => {
+            const service = req.body;
+            const result = await serviceCollection.insertOne(service);
+            res.send(result);
+        })
 
         app.get('/services' , async(req , res) => {
             const query = {};
